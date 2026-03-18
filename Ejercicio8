@@ -1,0 +1,35 @@
+#include <iostream>
+using namespace std;
+
+int main(){
+
+    float n1,n2,n3,prom,asistencia;
+    bool proyecto,plagio;
+    string estado,obs="";
+
+    cin>>n1>>n2>>n3>>asistencia>>proyecto>>plagio;
+
+    prom=(n1+n2+n3)/3;
+
+    if(plagio){
+        estado="Reprobado";
+    } else if(asistencia<70){
+        estado="Reprobado";
+    } else if(prom>=7 && proyecto){
+        estado="Aprobado";
+    } else if(prom>=5){
+        estado="Recuperacion";
+    } else {
+        estado="Reprobado";
+    }
+
+    if(n1>=9 && n2>=9 && n3>=9 && asistencia>=95)
+        obs="Felicitaciones";
+
+    if((n1==10 || n2==10 || n3==10) && (n1<4 || n2<4 || n3<4))
+        obs="Rendimiento irregular";
+
+    cout<<prom<<" "<<estado<<" "<<obs;
+
+    return 0;
+}
