@@ -1,0 +1,82 @@
+#include <iostream>
+using namespace std;
+
+int main() {
+
+    int hojas;
+    float precio, subtotal, descuento = 0, recargo = 0, total, anillado_valor = 0;
+    string tipo_imp, usuario, horario;
+    bool anillado;
+
+    cout << "Numero de hojas: ";
+    cin >> hojas;
+
+    cout << "Tipo (bn/color): ";
+    cin >> tipo_imp;
+
+    cout << "Usuario (estudiante/docente): ";
+    cin >> usuario;
+
+    cout << "Horario (normal/nocturno): ";
+    cin >> horario;
+
+    cout << "Anillado (1=si, 0=no): ";
+    cin >> anillado;
+
+    // Precio por tramo
+    if (hojas <= 20) {
+        if (tipo_imp == "bn")
+            precio = 0.05;
+        else
+            precio = 0.10;
+    }
+    else if (hojas <= 100) {
+        if (tipo_imp == "bn")
+            precio = 0.04;
+        else
+            precio = 0.09;
+    }
+    else {
+        if (tipo_imp == "bn")
+            precio = 0.03;
+        else
+            precio = 0.08;
+    }
+
+    subtotal = hojas * precio;
+
+    // Descuento docente
+    if (usuario == "docente") {
+        descuento = subtotal * 0.05;
+    }
+
+    // Descuento estudiante (solo si es mayor)
+    if (usuario == "estudiante" && hojas > 50) {
+        if (subtotal * 0.08 > descuento) {
+            descuento = subtotal * 0.08;
+        }
+    }
+
+    // Recargo nocturno
+    if (horario == "nocturno") {
+        recargo = subtotal * 0.10;
+    }
+
+    // Anillado
+    if (anillado) {
+        anillado_valor = 2;
+        if (hojas > 80) {
+            anillado_valor = anillado_valor * 0.8;
+        }
+    }
+
+    total = subtotal - descuento + recargo + anillado_valor;
+
+    cout << "\nSubtotal: " << subtotal << endl;
+    cout << "Descuento: " << descuento << endl;
+    cout << "Recargo: " << recargo << endl;
+    cout << "Anillado: " << anillado_valor << endl;
+    cout << "Total a pagar: " << total << endl;
+
+    return 0;
+}
