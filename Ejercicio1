@@ -1,0 +1,63 @@
+#include <iostream>
+using namespace std;
+
+int main() {
+
+    int minutos_tarde, faltas;
+    bool credencial, pertenece;
+    string estado, motivo, prioridad;
+
+    cout << "Minutos de retraso: ";
+    cin >> minutos_tarde;
+
+    cout << "Faltas acumuladas: ";
+    cin >> faltas;
+
+    cout << "Tiene credencial (1=Si, 0=No): ";
+    cin >> credencial;
+
+    cout << "Pertenece al curso (1=Si, 0=No): ";
+    cin >> pertenece;
+
+    if (!credencial) {
+        estado = "No ingresa";
+        motivo = "No tiene credencial";
+        prioridad = "Alta";
+    }
+    else if (!pertenece) {
+        estado = "No ingresa";
+        motivo = "No pertenece al curso";
+        prioridad = "Alta";
+    }
+    else if (faltas >= 5) {
+        estado = "No ingresa";
+        motivo = "Exceso de faltas";
+        prioridad = "Alta";
+    }
+    else if (minutos_tarde > 10) {
+        estado = "No ingresa";
+        motivo = "Llegada muy tarde";
+        prioridad = "Media";
+    }
+    else if (faltas >= 3) {
+        estado = "Ingresa con advertencia";
+        motivo = "Muchas faltas";
+        prioridad = "Media";
+    }
+    else if (minutos_tarde > 0) {
+        estado = "Ingresa con advertencia";
+        motivo = "Llegada tarde";
+        prioridad = "Baja";
+    }
+    else {
+        estado = "Ingresa sin problema";
+        motivo = "Cumple condiciones";
+        prioridad = "Baja";
+    }
+
+    cout << "\nEstado: " << estado << endl;
+    cout << "Motivo: " << motivo << endl;
+    cout << "Prioridad: " << prioridad << endl;
+
+    return 0;
+}
