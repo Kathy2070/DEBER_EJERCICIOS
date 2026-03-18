@@ -1,0 +1,74 @@
+#include <iostream>
+using namespace std;
+
+int main() {
+
+    float promedio, asistencia;
+    int materias;
+    bool ingresos_bajos, proyectos;
+
+    string ayuda, razonA, razonE, obs;
+
+    cout << "Promedio: ";
+    cin >> promedio;
+
+    cout << "Materias perdidas: ";
+    cin >> materias;
+
+    cout << "Asistencia (%): ";
+    cin >> asistencia;
+
+    cout << "Ingresos bajos (1=Si, 0=No): ";
+    cin >> ingresos_bajos;
+
+    cout << "Participa en proyectos (1=Si, 0=No): ";
+    cin >> proyectos;
+
+    if (asistencia < 80) {
+        ayuda = "Sin beneficio";
+        razonA = "Baja asistencia";
+        razonE = "No aplica";
+        obs = "Pierde cualquier beca";
+    }
+    else if (promedio < 7) {
+        ayuda = "Sin beneficio";
+        razonA = "Promedio insuficiente";
+        razonE = "No aplica";
+        obs = "No cumple requisito académico";
+    }
+    else if (promedio >= 9 && asistencia >= 90 && materias == 0) {
+        ayuda = "Beca completa";
+        razonA = "Alto rendimiento";
+        razonE = "No necesario";
+        obs = "Cumple todos los requisitos";
+    }
+    else if (promedio >= 8 && asistencia >= 85) {
+        ayuda = "Beca parcial";
+        razonA = "Buen rendimiento";
+        razonE = "Evaluado";
+        obs = "Cumple requisitos parciales";
+    }
+    else {
+        ayuda = "Ayuda de materiales";
+        razonA = "Rendimiento básico";
+        razonE = "Evaluado";
+        obs = "Apoyo minimo";
+    }
+
+    // Mejora por condición económica
+    if (proyectos && ingresos_bajos) {
+        if (ayuda == "Ayuda de materiales") {
+            ayuda = "Beca parcial";
+        }
+        else if (ayuda == "Beca parcial" && materias == 0) {
+            ayuda = "Beca completa";
+        }
+    }
+
+    cout << "\nTipo de ayuda: " << ayuda << endl;
+    cout << "Razon academica: " << razonA << endl;
+    cout << "Razon economica: " << razonE << endl;
+    cout << "Observacion: " << obs << endl;
+
+    return 0;
+}
