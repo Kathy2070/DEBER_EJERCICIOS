@@ -1,0 +1,34 @@
+#include <iostream>
+using namespace std;
+
+int main(){
+
+    int n,dias;
+    float hospedaje,transp,comida=0,total,descuento=0;
+    bool alimentacion,desc_inst,coordinador;
+
+    cin>>n>>dias>>hospedaje;
+    cin>>alimentacion>>desc_inst>>coordinador;
+
+    if(n>20) transp=n*50;
+    else transp=n*80;
+
+    if(coordinador) transp-=50;
+
+    hospedaje=hospedaje*dias*n;
+
+    if(dias>3) hospedaje*=0.9;
+
+    if(alimentacion) comida=15*dias*n;
+
+    total=transp+hospedaje+comida;
+
+    if(desc_inst && total>1000)
+        descuento=total*0.1;
+
+    total-=descuento;
+
+    cout<<total<<" "<<total/n;
+
+    return 0;
+}
