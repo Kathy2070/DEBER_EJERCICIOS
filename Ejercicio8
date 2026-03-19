@@ -7,29 +7,43 @@ int main(){
     bool proyecto,plagio;
     string estado,obs="";
 
-    cin>>n1>>n2>>n3>>asistencia>>proyecto>>plagio;
+    cout << "Nota 1: ";
+    cin >> n1;
+    cout << "Nota 2: ";
+    cin >> n2;
+    cout << "Nota 3: ";
+    cin >> n3;
+    cout << "Asistencia (%): ";
+    cin >> asistencia;
+    cout << "Entrego proyecto? (1=Si, 0=No): ";
+    cin >> proyecto;
+    cout << "Cometio plagio? (1=Si, 0=No): ";
+    cin >> plagio;
 
-    prom=(n1+n2+n3)/3;
+    prom = (n1 + n2 + n3) / 3;
 
     if(plagio){
-        estado="Reprobado";
-    } else if(asistencia<70){
-        estado="Reprobado";
-    } else if(prom>=7 && proyecto){
-        estado="Aprobado";
-    } else if(prom>=5){
-        estado="Recuperacion";
+        estado = "Reprobado";
+    } else if(asistencia < 70){
+        estado = "Reprobado";
+    } else if(prom >= 7 && proyecto){
+        estado = "Aprobado";
+    } else if(prom >= 5){
+        estado = "Recuperacion";
     } else {
-        estado="Reprobado";
+        estado = "Reprobado";
     }
 
-    if(n1>=9 && n2>=9 && n3>=9 && asistencia>=95)
-        obs="Felicitaciones";
+    if(n1 >= 9 && n2 >= 9 && n3 >= 9 && asistencia >= 95)
+        obs = "Felicitaciones";
 
-    if((n1==10 || n2==10 || n3==10) && (n1<4 || n2<4 || n3<4))
-        obs="Rendimiento irregular";
+    if((n1 == 10 || n2 == 10 || n3 == 10) && (n1 < 4 || n2 < 4 || n3 < 4))
+        obs = "Rendimiento irregular";
 
-    cout<<prom<<" "<<estado<<" "<<obs;
+    cout << "\n--- RESULTADOS ---" << endl;
+    cout << "Promedio: " << prom << endl;
+    cout << "Estado: " << estado << endl;
+    cout << "Observacion: " << obs << endl;
 
     return 0;
 }
