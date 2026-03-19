@@ -8,29 +8,55 @@ int main(){
     string tipo;
     bool alto,deuda;
 
-    cin>>ant>>act;
+    cout << "Lectura anterior: ";
+    cin >> ant;
 
-    if(act<ant){
-        cout<<"Error";
+    cout << "Lectura actual: ";
+    cin >> act;
+
+    if(act < ant){
+        cout << "Error: lectura invalida" << endl;
     } else {
 
-        consumo=act-ant;
+        cout << "Tipo de vivienda (social/normal): ";
+        cin >> tipo;
 
-        if(consumo<=100) costo=consumo*0.1;
-        else if(consumo<=200) costo=consumo*0.15;
-        else costo=consumo*0.2;
+        cout << "Numero de habitantes: ";
+        cin >> habitantes;
 
-        total=costo;
+        cout << "Tiene deuda anterior? (1=Si, 0=No): ";
+        cin >> deuda;
 
-        if(deuda) total*=1.1;
+        cout << "Tiene artefactos de alto consumo? (1=Si, 0=No): ";
+        cin >> alto;
 
-        if(tipo=="social" && consumo<80)
-            total*=0.8;
+        consumo = act - ant;
 
-        if(consumo/habitantes>50)
-            cout<<"Alerta";
+        if(consumo <= 100)
+            costo = consumo * 0.1;
+        else if(consumo <= 200)
+            costo = consumo * 0.15;
+        else
+            costo = consumo * 0.2;
 
-        cout<<total;
+        total = costo;
+
+        if(deuda)
+            total *= 1.1;
+
+        if(tipo == "social" && consumo < 80)
+            total *= 0.8;
+
+        cout << "\n--- RESULTADOS ---" << endl;
+        cout << "Consumo: " << consumo << endl;
+        cout << "Costo base: " << costo << endl;
+        cout << "Total: " << total << endl;
+
+        if(consumo / habitantes > 50)
+            cout << "Alerta: consumo alto por habitante" << endl;
+
+        if(alto && consumo > 200)
+            cout << "Riesgo: alto consumo electrico" << endl;
     }
 
     return 0;
