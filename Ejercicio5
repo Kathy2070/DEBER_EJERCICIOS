@@ -3,36 +3,71 @@ using namespace std;
 
 int main() {
 
-    int b20, b10, b5, b1, monto, saldo;
-    int e20=0,e10=0,e5=0,e1=0;
+    int b20, b10, b5, b1;
+    int monto, saldo;
+    int e20=0, e10=0, e5=0, e1=0;
     int disponible;
 
-    cin >> b20 >> b10 >> b5 >> b1;
+    cout << "Ingrese billetes de 20: ";
+    cin >> b20;
+
+    cout << "Ingrese billetes de 10: ";
+    cin >> b10;
+
+    cout << "Ingrese billetes de 5: ";
+    cin >> b5;
+
+    cout << "Ingrese billetes de 1: ";
+    cin >> b1;
+
+    cout << "Ingrese saldo del usuario: ";
     cin >> saldo;
+
+    cout << "Ingrese monto a retirar: ";
     cin >> monto;
 
     disponible = b20*20 + b10*10 + b5*5 + b1;
 
     if(monto <= 0 || monto > saldo || monto > disponible){
-        cout << "Operacion no valida";
+        cout << "Operacion no valida" << endl;
     } else {
 
-        e20 = min(b20, monto/20);
+        if(b20 < monto/20)
+            e20 = b20;
+        else
+            e20 = monto/20;
+
         monto -= e20*20;
 
-        e10 = min(b10, monto/10);
+        if(b10 < monto/10)
+            e10 = b10;
+        else
+            e10 = monto/10;
+
         monto -= e10*10;
 
-        e5 = min(b5, monto/5);
+        if(b5 < monto/5)
+            e5 = b5;
+        else
+            e5 = monto/5;
+
         monto -= e5*5;
 
-        e1 = min(b1, monto);
+        if(b1 < monto)
+            e1 = b1;
+        else
+            e1 = monto;
+
         monto -= e1;
 
         if(monto != 0){
-            cout << "No exacto";
+            cout << "No se puede entregar el monto exacto" << endl;
         } else {
-            cout << e20 << " " << e10 << " " << e5 << " " << e1;
+            cout << "Billetes entregados:" << endl;
+            cout << "20: " << e20 << endl;
+            cout << "10: " << e10 << endl;
+            cout << "5: " << e5 << endl;
+            cout << "1: " << e1 << endl;
         }
     }
 
