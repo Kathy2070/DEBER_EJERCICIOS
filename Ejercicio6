@@ -1,34 +1,60 @@
 #include <iostream>
 using namespace std;
 
-int main(){
+int main() {
 
-    int n,dias;
-    float hospedaje,transp,comida=0,total,descuento=0;
-    bool alimentacion,desc_inst,coordinador;
+    int n, dias;
+    float hospedaje, transp, comida = 0, total, descuento = 0;
+    bool alimentacion, desc_inst, coordinador;
 
-    cin>>n>>dias>>hospedaje;
-    cin>>alimentacion>>desc_inst>>coordinador;
+    cout << "Numero de estudiantes: ";
+    cin >> n;
 
-    if(n>20) transp=n*50;
-    else transp=n*80;
+    cout << "Numero de dias: ";
+    cin >> dias;
 
-    if(coordinador) transp-=50;
+    cout << "Costo de hospedaje por dia: ";
+    cin >> hospedaje;
 
-    hospedaje=hospedaje*dias*n;
+    cout << "Incluye alimentacion? (1=Si, 0=No): ";
+    cin >> alimentacion;
 
-    if(dias>3) hospedaje*=0.9;
+    cout << "Tiene descuento institucional? (1=Si, 0=No): ";
+    cin >> desc_inst;
 
-    if(alimentacion) comida=15*dias*n;
+    cout << "Hay coordinador (viaja gratis en transporte)? (1=Si, 0=No): ";
+    cin >> coordinador;
 
-    total=transp+hospedaje+comida;
+    if(n > 20)
+        transp = n * 50;
+    else
+        transp = n * 80;
 
-    if(desc_inst && total>1000)
-        descuento=total*0.1;
+    if(coordinador)
+        transp -= 50;
 
-    total-=descuento;
+    hospedaje = hospedaje * dias * n;
 
-    cout<<total<<" "<<total/n;
+    if(dias > 3)
+        hospedaje *= 0.9;
+
+    if(alimentacion)
+        comida = 15 * dias * n;
+
+    total = transp + hospedaje + comida;
+
+    if(desc_inst && total > 1000)
+        descuento = total * 0.1;
+
+    total -= descuento;
+
+    cout << "\n--- RESULTADOS ---" << endl;
+    cout << "Transporte: " << transp << endl;
+    cout << "Hospedaje: " << hospedaje << endl;
+    cout << "Alimentacion: " << comida << endl;
+    cout << "Descuento: " << descuento << endl;
+    cout << "Total: " << total << endl;
+    cout << "Por estudiante: " << total / n << endl;
 
     return 0;
 }
